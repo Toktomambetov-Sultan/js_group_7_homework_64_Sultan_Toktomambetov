@@ -1,14 +1,22 @@
 import React from 'react';
 import Toolsbar from './Toolsbar/Toolsbar';
-import { Container } from '@material-ui/core';
+import { Container, makeStyles } from '@material-ui/core';
 
-const Layout = (props) => {
+const useStyles = makeStyles((theme) => ({
+    main: {
+        marginTop: theme.spacing(2),
+        fontSize: theme.spacing(4),
+    }
+}));
+
+const Layout = ({ children }) => {
+    const classes = useStyles();
     return (
         <>
             <header><Toolsbar /></header>
-            <main>
+            <main className={classes.main}>
                 <Container>
-                    {props.children}
+                    {children}
                 </Container>
             </main>
         </>

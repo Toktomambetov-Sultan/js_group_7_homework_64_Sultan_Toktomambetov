@@ -2,24 +2,27 @@ import React from 'react';
 import { useState } from 'react';
 import OrderAxios from '../../OrderAxios';
 import { useEffect } from 'react';
+import { useCallback } from 'react';
 
 const Page = (props) => {
     const [pageData, setPageData] = useState({});
-    const initPageData = async () => {
-        const params = new URLSearchParams({
-            orderBy: "url",
-            equalTo: props.match.params.page
-        });
-        const response = await OrderAxios.get("Pages.json?" + params.toString());
-        console.log(response);
-    };
+    const initPageData = useCallback(
+        async () => {
+            const params = new URLSearchParams({
+                orderBy: '"url"',
+                equalTo: '"' + props.match.params.page + '"'
+            });
+            const response = await OrderAxios.get("Pages.json?" + params.toString());
+            setPageData(
+                Object.values(response.data)[0]
+            );
+        }, [props.match.params.page]);
     useEffect(() => {
-        initPageData();
-        console.log(1);
-    }, []);
-    console.log(1);
+        initPageData().catch(console.error);
+        console.log("unmount");
+    }, [initPageData]);
     return (
-        <div>123</div>
+        <div>{pageData.content}</div>
     );
 };
 

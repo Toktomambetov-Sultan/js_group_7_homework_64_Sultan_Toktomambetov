@@ -5,11 +5,9 @@ import * as serviceWorker from './serviceWorker';
 import App from './containers/App/App';
 import { BrowserRouter } from 'react-router-dom';
 const app = (
-  <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
 );
 ReactDOM.render(
   app,
