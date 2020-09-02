@@ -1,0 +1,11 @@
+.Navigation__link{
+    font-size: 24px;
+    color: #fff;
+    text-decoration: none;
+}
+.Navigation__link:hover{
+    text-shadow: 0 0 4px #fff;
+}
+.Navigation__link.active{
+    color: rgb(0, 255, 0);
+}
