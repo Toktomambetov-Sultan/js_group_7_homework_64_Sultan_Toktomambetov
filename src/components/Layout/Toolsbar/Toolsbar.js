@@ -4,6 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { Container } from '@material-ui/core';
 import NavigationItem from './Navigation/NavigationItem';
+import { pagesInfo } from '../../../constants';
 
 const useStyles = makeStyles((theme) => ({
     Toolbar: {
@@ -29,11 +30,11 @@ const Toolsbar = () => {
                     <Toolbar className={classes.Toolbar}>
                         <div className={classes.logo}>Static Pages</div>
                         <ul className={classes.list}>
-                            <NavigationItem to="/pages/home" exact>Home</NavigationItem>
-                            <NavigationItem to="/pages/about" exact>About</NavigationItem>
-                            <NavigationItem to="/pages/divisions" exact>Divisions</NavigationItem>
-                            <NavigationItem to="/pages/contacts" exact>Contacts</NavigationItem>
-                            <NavigationItem to="/edit" exact>Edit Page</NavigationItem>
+                            {pagesInfo.map(page => (
+                                <NavigationItem key={page.name} to={page.localUrl} exact>{page.name}</NavigationItem>
+                            ))}
+                            <NavigationItem to="/edit" exact>Edit page</NavigationItem>
+
                         </ul>
                     </Toolbar>
                 </Container>
